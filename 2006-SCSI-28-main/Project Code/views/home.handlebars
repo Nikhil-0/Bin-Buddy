@@ -1,0 +1,97 @@
+<section class="py-4">
+  <div class="w-100 px-2">
+    <div class="bb-hero-card bg-success-subtle rounded-3 p-3 p-md-4 mx-auto" style="max-width: 90vw;">
+
+    <div class="row align-items-center g-4 mb-5">
+      <div class="col-12 text-center">
+        <h1 class="display-5 mb-3 pt-4 text-success">Welcome to BinBuddy{{#if user}}, {{user.name}}{{/if}}</h1>
+        <p class="lead mb-4">
+          Join us in personalizing your e-waste recycling experience and make it a habit with helpful reminders.
+        </p>
+        {{#unless user}}
+        <a class="btn btn-success btn-lg" href="/login">
+          <i class="bi bi-person-plus me-2"></i>Get Started
+        </a>
+        {{/unless}}
+      </div>
+    </div>
+
+
+
+    <div class="card border-0 shadow-sm overflow-hidden mx-3 mx-md-4">
+      <div id="featuresCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="6000">
+        
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#featuresCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Map"></button>
+          <button type="button" data-bs-target="#featuresCarousel" data-bs-slide-to="1" aria-label="Educational Materials"></button>
+          <button type="button" data-bs-target="#featuresCarousel" data-bs-slide-to="2" aria-label="Reminders"></button>
+        </div>
+        
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="position-relative">
+              <img src="/img/map.PNG" class="d-block w-100" alt="Interactive Map" style="height: 700px; object-fit: cover;">
+              <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex align-items-center justify-content-center">
+                <div class="text-center text-white">
+                  <h2 class="mb-3">Interactive Map</h2>
+                  <p class="mb-4">Find e-waste collection points near you</p>
+                  <a href="/map" class="btn btn-light btn-lg">
+                    <i class="bi bi-geo-alt me-2"></i>Explore Map
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="carousel-item">
+            <div class="position-relative">
+              <img src="/img/regulated_waste.jpg" class="d-block w-100" alt="Educational Materials" style="height: 700px; object-fit: cover;">
+              <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex align-items-center justify-content-center">
+                <div class="text-center text-white">
+                  <h2 class="mb-3">Educational Materials</h2>
+                  <p class="mb-4">Learn proper e-waste disposal techniques</p>
+                  <a href="/articles" class="btn btn-light btn-lg">
+                    <i class="bi bi-book me-2"></i>Learn More
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="carousel-item">
+            <div class="position-relative">
+              <img src="/img/reminder.jpg" class="d-block w-100" alt="Smart Reminders" style="height: 700px; object-fit: cover;">
+              <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex align-items-center justify-content-center">
+                <div class="text-center text-white">
+                  <h2 class="mb-3">Smart Reminders</h2>
+                  <p class="mb-4">Never forget to recycle with personalized alerts</p>
+                  {{#if user}}
+                  <a href="/reminders" class="btn btn-light btn-lg">
+                    <i class="bi bi-bell me-2"></i>Manage Reminders
+                  </a>
+                  {{else}}
+                  <a href="/login" class="btn btn-light btn-lg">
+                    <i class="bi bi-person-plus me-2"></i>Login to Use
+                  </a>
+                  {{/if}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <button class="carousel-control-prev" type="button" data-bs-target="#featuresCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        
+        <button class="carousel-control-next" type="button" data-bs-target="#featuresCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+

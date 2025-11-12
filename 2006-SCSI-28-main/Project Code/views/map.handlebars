@@ -1,0 +1,160 @@
+<section class="py-4">
+  <div class="container-fluid px-4">
+    <div class="bb-hero-card bg-success-subtle rounded-3 p-4 p-md-5 mb-4" style="width: 100%; max-width: none;">
+      <div class="row align-items-center g-4 mb-4">
+        <div class="col-lg-8 mx-auto text-center">
+          <h1 class="display-6 mb-3 text-success">
+            <i class="bi bi-geo-alt me-2"></i>Find Nearby E-Waste Bins
+          </h1>
+          <p class="lead mb-0 pb-5">Locate the nearest e-waste collection points and get directions</p>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-5">
+          <label class="form-label fw-semibold">
+            <i class="bi bi-search me-2 text-success"></i>Search Location
+          </label>
+          <input id="searchBar" type="text" class="form-control form-control-lg" 
+                 placeholder="Search for a bin by name or location..." oninput="searchBins()">
+        </div>
+        
+        <div class="col-md-5">
+          <label class="form-label fw-semibold">
+            <i class="bi bi-funnel me-2 text-success"></i>E-Waste Type
+          </label>
+          <select id="ewasteTypeFilter" class="form-select form-select-lg" onchange="filterByEwasteType()">
+            <option value="all">All Types</option>
+            <option value="ict">ICT Equipment</option>
+            <option value="batteries">Batteries</option>
+            <option value="lamps">Lamps & Lighting</option>
+            <option value="appliances">Appliances</option>
+          </select>
+        </div>
+        
+        <div class="col-md-2 d-flex align-items-end">
+          <button class="btn btn-danger btn-lg w-100" onclick="resetFilters()">
+            <i class="bi bi-arrow-clockwise me-2"></i>Reset
+          </button>
+        </div>
+      </div>
+      
+      <div class="row mt-4">
+        <div class="col-12">
+          <label for="distanceSlider" class="form-label fw-semibold">
+            <i class="bi bi-geo me-2 text-success"></i>Distance Range: <span id="distanceValue" class="text-success">50 km</span>
+          </label>
+          <input id="distanceSlider" type="range" class="form-range" min="1" max="50" value="50" oninput="filterByDistance()">
+        </div>
+      </div>
+      
+      <div class="row g-4 mt-3">
+        <div class="col-lg-8">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body p-0">
+              <div id="MAP_PAGE" style="height: 600px; width: 100%; border-radius: 0.375rem;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-body p-4">
+              <div id="binDetailsContainer">
+                <div id="defaultState" class="text-center py-5">
+                  <div class="text-success mb-4">
+                    <i class="bi bi-geo-alt" style="font-size: 4rem;"></i>
+                  </div>
+                  <h5 class="fw-semibold text-dark mb-2">Select a bin on the map</h5>
+                  <p class="text-muted small mb-0 lh-sm">Click on any marker to see details and get directions</p>
+                </div>
+
+                <div id="selectedBinDetails" class="d-none">
+                  <div class="d-flex align-items-start gap-3 mb-4">
+                    <div class="text-success fs-2">
+                      <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+                    <div class="flex-fill">
+                      <h5 id="binName" class="fw-bold mb-1 text-dark"></h5>
+                      <p id="binAddress" class="text-muted small mb-2 lh-sm"></p>
+                      <span id="binType" class="badge bg-success-subtle text-success px-3 py-2"></span>
+                    </div>
+                  </div>
+
+                  <div class="mb-4">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                      <i class="bi bi-info-circle text-success"></i>
+                      <h6 class="fw-semibold mb-0 text-dark">Description</h6>
+                    </div>
+                    <p id="binDescription" class="text-muted small mb-0 lh-sm"></p>
+                  </div>
+
+                  <div class="d-grid gap-2">
+                    <button id="getDirectionsBtn" class="btn btn-success d-flex align-items-center justify-content-center gap-2" onclick="calculateAndDisplayRoute()">
+                      <i class="bi bi-navigation"></i>Get Directions
+                    </button>
+                    <button class="btn btn-outline-secondary d-flex align-items-center justify-content-center gap-2" onclick="centerMapOnBin()">
+                      <i class="bi bi-crosshair"></i>Center on Bin
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="directionsPanel" class="row mt-4 d-none">
+        <div class="col-12">
+          <div class="card border-0 shadow-sm">
+            <div class="card-header bg-secondary text-white">
+              <h5 class="mb-0">
+                <i class="bi bi-navigation me-2"></i>Directions to <span id="directionDestination"></span>
+              </h5>
+            </div>
+            <div class="card-body">
+              <div class="row mb-4">
+                <div class="col-md-6">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-clock me-2 text-secondary"></i>
+                    <span class="fw-semibold">Duration: <span id="directionDuration" class="text-secondary"></span></span>
+                  </div>
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-signpost me-2 text-secondary"></i>
+                    <span class="fw-semibold">Distance: <span id="directionDistance" class="text-secondary"></span></span>
+                  </div>
+                </div>
+                <div class="col-md-6 text-end">
+                  <div class="d-flex gap-2 justify-content-end">
+                    <button id="walkingBtn" class="btn btn-secondary active" onclick="changeTravelMode('WALKING')" title="Walking">
+                      <i class="bi bi-person-walking"></i>
+                    </button>
+                    <button id="drivingBtn" class="btn btn-outline-secondary" onclick="changeTravelMode('DRIVING')" title="Driving">
+                      <i class="bi bi-car-front"></i>
+                    </button>
+                    <button id="transitBtn" class="btn btn-outline-secondary" onclick="changeTravelMode('TRANSIT')" title="Transit">
+                      <i class="bi bi-bus-front"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-12">
+                  <h6 class="fw-semibold mb-3">Step-by-step directions:</h6>
+                  <div id="directionsSteps">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js" defer></script>
+<script src="/js/map.js" defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{googleMapsApiKey}}&callback=initMapPage" defer></script>
+

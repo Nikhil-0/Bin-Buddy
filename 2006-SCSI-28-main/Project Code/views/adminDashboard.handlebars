@@ -1,0 +1,88 @@
+<section class="py-4">
+  <div class="container-fluid px-4">
+    <div class="bg-success-subtle rounded-3 p-4 p-md-5 mb-4" style="width: 100%; max-width: none;">
+      <div class="row align-items-center g-4 mb-5">
+        <div class="col-lg-8 mx-auto text-center">
+          <h1 class="display-6 mb-3 text-success">
+            <i class="bi bi-shield-lock me-3"></i>Admin Dashboard
+          </h1>
+          <p class="lead mb-0 pb-3">Welcome back, {{user.name}}! Manage your e-waste platform efficiently.</p>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-5">
+        <div class="col-md-6">
+          <div class="card border-0 shadow-sm h-100 hover-lift">
+            <div class="card-body p-4 text-center">
+              <div class="text-success mb-4">
+                <i class="bi bi-people" style="font-size: 4rem;"></i>
+              </div>
+              <h4 class="fw-bold text-dark mb-3">Manage Users</h4>
+              <p class="text-muted mb-4 lh-sm">
+                View, edit, and manage user accounts. Monitor user activity, handle account issues, and maintain platform security.
+              </p>
+              <div class="d-grid gap-2">
+                <a href="/admin/users" class="btn btn-success btn-lg">
+                  <i class="bi bi-person-gear me-2"></i>Manage Users
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card border-0 shadow-sm h-100 hover-lift">
+            <div class="card-body p-4 text-center">
+              <div class="text-success mb-4">
+                <i class="bi bi-chat-square-text" style="font-size: 4rem;"></i>
+              </div>
+              <h4 class="fw-bold text-dark mb-3">View Queries</h4>
+              <p class="text-muted mb-4 lh-sm">
+                Review and respond to user queries. Handle support requests, technical issues, and feedback from the community.
+              </p>
+              <div class="d-grid gap-2">
+                <a href="/adminQuery/Dashboard" class="btn btn-success btn-lg">
+                  <i class="bi bi-envelope-open me-2"></i>View Queries
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="card border-0 shadow-sm bg-light">
+            <div class="card-body p-4">
+              <h5 class="fw-semibold mb-3 text-success">
+                <i class="bi bi-bar-chart me-2"></i>Platform Details
+              </h5>
+              <div class="row text-center">
+                <div class="col-md-6">
+                  <div class="p-3">
+                    <div class="text-success fs-4 mb-2">
+                      <i class="bi bi-people-fill"></i>
+                    </div>
+                    <h6 class="fw-bold text-dark">Total Users</h6>
+                    <h4 class="text-success fw-bold mb-2">{{stats.totalUsers}}</h4>
+                    <p class="text-muted small mb-0">Registered platform users</p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="p-3 border-start">
+                    <div class="text-success fs-4 mb-2">
+                      <i class="bi bi-chat-dots-fill"></i>
+                    </div>
+                    <h6 class="fw-bold text-dark">Pending Queries</h6>
+                    <h4 class="text-success fw-bold mb-2">{{stats.pendingQueries}}</h4>
+                    <p class="text-muted small mb-0">Awaiting admin response</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,45 @@
+<section class="py-4">
+  <div class="container">
+    <div class="bb-hero-card bg-success-subtle rounded-3 p-4 p-md-5">
+      <div class="row align-items-center g-4 mb-4">
+        <div class="col-lg-8 mx-auto text-center">
+          <h1 class="display-6 mb-3">Create New Reminder</h1>
+          <p class="lead mb-0">Set up a personalized reminder to help you stay on track with your recycling goals</p>
+        </div>
+      </div>
+
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-5">
+          <form action="/reminder/submit" method="POST">
+                <div class="mb-4">
+                  <label for="message" class="form-label fw-semibold">
+                    <i class="bi bi-chat-text me-2 text-success"></i>Reminder Message
+                  </label>
+                  <input type="text" name="message" id="message" class="form-control form-control-lg" 
+                         placeholder="Enter your reminder message..." required>
+                  <div class="form-text">What would you like to be reminded about?</div>
+                </div>
+
+                <div class="mb-4">
+                  <label for="datetime" class="form-label fw-semibold">
+                    <i class="bi bi-calendar-event me-2 text-success"></i>Date & Time
+                  </label>
+                  <input type="datetime-local" name="datetime" id="datetime" class="form-control form-control-lg" required>
+                  <div class="form-text">When would you like to receive this reminder?</div>
+                </div>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                  <button type="submit" class="btn btn-success btn-lg px-4">
+                    <i class="bi bi-check-circle me-2"></i>Save Reminder
+                  </button>
+                  <a href="/reminder/reminderDashboard" class="btn btn-outline-danger btn-lg px-4">
+                    <i class="bi bi-arrow-left me-2"></i>Cancel
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+    </div>
+  </div>
+</section>
+

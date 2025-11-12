@@ -1,0 +1,164 @@
+<section class="py-4">
+  <div class="container-fluid px-4">
+    <div class="bg-success-subtle rounded-3 p-4 p-md-5 mb-4">
+      
+      <div class="text-center mb-4">
+        <h1 class="display-6 mb-3 text-success">
+          <i class="bi bi-person-gear me-2"></i>Edit User
+        </h1>
+        <p class="mb-0">Manage user account information and settings</p>
+      </div>
+
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-0">
+          
+          <div class="card-header bg-white border-0 p-4">
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="d-flex align-items-center">
+                <img id="profileImageSmall" src="{{userToEdit.profilePicture}}" alt="Profile" 
+                     class="rounded-circle me-3" style="width: 48px; height: 48px; object-fit: cover;"
+                     onerror="this.src='/img/defaultUser.jpg'">
+                <div>
+                  <h5 class="mb-1 fw-bold">Profile Information</h5>
+                  <p class="mb-0 text-muted">Update user personal details</p>
+                </div>
+              </div>
+              <div>
+                <a href="/admin/users" class="btn btn-danger">
+                  <i class="bi bi-x-circle me-2"></i>Cancel
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <form method="POST" action="/admin/users/edit/{{userToEdit._id}}" novalidate>
+            <input type="hidden" id="profilePictureField" name="profilePicture" value="{{userToEdit.profilePicture}}">
+            
+            <div class="p-4">
+                
+                <div class="row mb-4">
+                  <div class="col-md-2">
+                    <label class="form-label fw-semibold">
+                      <i class="bi bi-person me-2"></i>Full Name
+                    </label>
+                  </div>
+                  <div class="col-md-10">
+                    <input type="text" class="form-control" name="name" value="{{userToEdit.name}}" required>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-md-2">
+                    <label class="form-label fw-semibold">
+                      <i class="bi bi-at me-2"></i>Username
+                    </label>
+                  </div>
+                  <div class="col-md-10">
+                    <input type="text" class="form-control" name="username" value="{{userToEdit.username}}" required>
+                    <small class="text-muted">Must be at least 3 characters</small>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-md-2">
+                    <label class="form-label fw-semibold text-muted">
+                      <i class="bi bi-envelope me-2"></i>Email Address
+                    </label>
+                  </div>
+                  <div class="col-md-10">
+                    <input type="email" class="form-control" value="{{userToEdit.email}}" disabled>
+                    <small class="text-muted">Email cannot be changed</small>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-md-2">
+                    <label class="form-label fw-semibold text-muted">
+                      <i class="bi bi-calendar me-2"></i>Date Joined
+                    </label>
+                  </div>
+                  <div class="col-md-10">
+                    <input type="text" class="form-control" value="{{formatDate userToEdit.dateJoined}}" disabled>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-md-2">
+                    <label class="form-label fw-semibold">
+                      <i class="bi bi-lock me-2"></i>New Password
+                    </label>
+                  </div>
+                  <div class="col-md-10">
+                    <input type="password" class="form-control" name="password" placeholder="Leave blank to keep current password">
+                    <small class="text-muted">Enter new password only if you want to change it</small>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-md-2">
+                    <label class="form-label fw-semibold">
+                      <i class="bi bi-lock-fill me-2"></i>Confirm Password
+                    </label>
+                  </div>
+                  <div class="col-md-10">
+                    <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm new password">
+                    <small class="text-muted">Must match new password if changing</small>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-md-2">
+                    <label class="form-label fw-semibold">
+                      <i class="bi bi-shield me-2"></i>Admin Status
+                    </label>
+                  </div>
+                  <div class="col-md-10">
+                    <select class="form-select" name="isAdmin">
+                      <option value="" {{#unless userToEdit.isAdmin}}selected{{/unless}}>No</option>
+                      <option value="on" {{#if userToEdit.isAdmin}}selected{{/if}}>Yes</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-md-2">
+                    <label class="form-label fw-semibold">
+                      <i class="bi bi-flag me-2"></i>Flagged
+                    </label>
+                  </div>
+                  <div class="col-md-10">
+                    <select class="form-select" name="flagged">
+                      <option value="" {{#unless userToEdit.flagged}}selected{{/unless}}>No</option>
+                      <option value="on" {{#if userToEdit.flagged}}selected{{/if}}>Yes</option>
+                    </select>
+                  </div>
+                </div>
+
+              <div class="text-center mb-3">
+                <button type="submit" class="btn btn-success me-2">
+                  <i class="bi bi-person-check-fill me-2"></i>Update Profile
+                </button>
+                <button type="button" class="btn btn-outline-warning" onclick="resetProfilePicture()">
+                  <i class="bi bi-arrow-counterclockwise me-2"></i>Reset Picture
+                </button>
+              </div>
+            </div>
+          </form>
+          </div>
+
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<script>
+function resetProfilePicture() {
+  document.getElementById('profileImageSmall').src = '/img/defaultUser.jpg';
+  
+  document.getElementById('profilePictureField').value = '/img/defaultUser.jpg';
+}
+
+
+</script>

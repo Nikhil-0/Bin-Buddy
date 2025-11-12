@@ -1,0 +1,92 @@
+<section class="py-4">
+  <div class="container">
+    <div class="bb-hero-card bg-success-subtle rounded-3 p-4 p-md-5">
+      
+      <div class="row align-items-center g-4 mb-4">
+        <div class="col-lg-8 mx-auto text-center">
+          <h1 class="display-6 mb-3 text-success">
+            <i class="bi bi-calendar-check me-2"></i>My Reminders
+          </h1>
+          <p class="lead mb-0">
+            Keep track of all your recycling reminders and stay committed to a sustainable lifestyle.
+          </p>
+        </div>
+      </div>
+
+      {{#if reminders.length}}
+        <div class="row g-4">
+          {{#each reminders}}
+            <div class="col-lg-6">
+              <div class="card border-0 shadow-sm h-100">
+                <div class="card-body p-4 d-flex flex-column">
+                  <div class="d-flex align-items-start mb-3">
+                    <div class="me-3">
+                      <i class="bi bi-bell-fill text-success" style="font-size: 1.5rem;"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                      <h5 class="card-title mb-0">{{message}}</h5>
+                    </div>
+                  </div>
+                  
+                  <div class="mb-2">
+                    <div class="d-flex align-items-center mb-1">
+                      <i class="bi bi-calendar-event me-2 text-muted"></i>
+                      <span class="fw-medium">{{formatDate datetime}}</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                      <i class="bi bi-clock me-2 text-muted"></i>
+                      <span class="text-muted">{{formatTime datetime}}</span>
+                    </div>
+                  </div>
+                  
+                  <div class="mt-auto pt-2 d-flex justify-content-between align-items-center">
+                    <div>
+                      {{#if (isPastDue datetime)}}
+                        <span class="badge bg-warning text-dark">
+                          <i class="bi bi-exclamation-triangle me-1"></i>Past Due
+                        </span>
+                      {{else}}
+                        <span class="badge bg-success">
+                          <i class="bi bi-clock-fill me-1"></i>Upcoming
+                        </span>
+                      {{/if}}
+                    </div>
+                    <form action="/reminder/delete/{{_id}}" method="POST" class="d-inline" 
+                          onsubmit="return confirm('Are you sure you want to delete this reminder?')">
+                      <button type="submit" class="btn btn-outline-danger btn-sm">
+                        <i class="bi bi-trash me-1"></i>Delete
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      {{else}}
+        <div class="text-center py-5">
+          <div class="mb-4">
+            <i class="bi bi-calendar-x text-muted" style="font-size: 4rem;"></i>
+          </div>
+          <h3 class="text-muted mb-3">No Reminders Yet</h3>
+          <p class="text-muted mb-4">You haven't set up any reminders. Start building sustainable habits today!</p>
+          <a href="/reminder/new" class="btn btn-success btn-lg">
+            <i class="bi bi-plus-circle me-2"></i>Create Your First Reminder
+          </a>
+        </div>
+      {{/if}}
+
+      <div class="row mt-5">
+        <div class="col-12 text-center">
+          <a href="/reminder/new" class="btn btn-success me-3">
+            <i class="bi bi-plus-circle me-2"></i>New Reminder
+          </a>
+          <a href="/reminder/reminderDashboard" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left me-2"></i>Back to Dashboard
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

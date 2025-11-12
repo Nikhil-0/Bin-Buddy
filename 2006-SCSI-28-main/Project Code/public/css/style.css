@@ -1,0 +1,37 @@
+.navbar-mint {
+    background-color: #E6F7E2;
+}
+
+.navbar {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+.navbar .nav-link:hover {
+    background-color: rgba(32, 201, 151, 0.1) !important;
+    color: #198754 !important;
+    transform: translateY(-1px);
+}
+
+.navbar .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.nav-inner {
+  width: 90vw;          
+  max-width: 1600px;    
+  margin: 0 auto;       
+}
+
+.carousel-item img {
+    height: 500px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.bb-hero-card {
+    max-width: 80%;
+    margin: 0 auto;
+    border: none;
+}

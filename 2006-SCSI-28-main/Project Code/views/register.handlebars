@@ -1,0 +1,93 @@
+<section class="py-4">
+  <div class="container-fluid px-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8">
+        <div class="bb-hero-card bg-success-subtle rounded-3 p-4 p-md-5">
+          
+          <header class="text-center mb-4">
+            <h1 class="display-6 mb-3 text-success">Join BinBuddy</h1>
+            <p class="lead text-muted mb-0">Create your account and start your recycling journey</p>
+          </header>
+
+          <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+              <form action="/register" method="POST">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="name" class="form-label">
+                      <i class="bi bi-person me-2 text-success"></i>Full Name
+                    </label>
+                    <input type="text" class="form-control form-control-lg" id="name" name="name" 
+                           value="{{name}}" placeholder="Enter your full name" required>
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <label for="username" class="form-label">
+                      <i class="bi bi-at me-2 text-success"></i>Username
+                    </label>
+                    <input type="text" class="form-control form-control-lg" id="username" name="username" 
+                           value="{{username}}" placeholder="Choose a username" minlength="3" required>
+                    <div class="form-text">
+                      <i class="bi bi-info-circle me-1"></i>At least 3 characters long
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="email" class="form-label">
+                    <i class="bi bi-envelope me-2 text-success"></i>Email Address
+                  </label>
+                  <input type="email" class="form-control form-control-lg" id="email" name="email" 
+                         value="{{email}}" placeholder="Enter your email address" required>
+                </div>
+                
+                <div class="mb-3">
+                  <label for="password" class="form-label">
+                    <i class="bi bi-lock me-2 text-success"></i>Password
+                  </label>
+                  <input type="password" class="form-control form-control-lg" id="password" name="password"
+                         pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$" 
+                         placeholder="Create a strong password" required>
+                  <div class="form-text">
+                    <i class="bi bi-shield-check me-1"></i>At least 6 characters with 1 number and 1 special character
+                  </div>
+                </div>
+                
+                <div class="mb-4">
+                  <label for="password2" class="form-label">
+                    <i class="bi bi-lock-fill me-2 text-success"></i>Confirm Password
+                  </label>
+                  <input type="password" class="form-control form-control-lg" id="password2" name="password2" 
+                         placeholder="Confirm your password" required>
+                </div>
+
+                <div class="mb-3">
+                  <label for="adminCode" class="form-label">
+                    <i class="bi bi-shield-lock me-2 text-success"></i>Admin Code (optional)
+                  </label>
+                  <input type="text" class="form-control form-control-lg" id="adminCode" name="adminCode" 
+                         placeholder="Enter admin code if you have one">
+                  <div class="form-text">
+                    Only provide this if you were given a valid admin code by the system administrator.
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-success btn-lg w-100 mb-3">
+                  <i class="bi bi-person-plus me-2"></i>Create Account
+                </button>
+              </form>
+              
+              <div class="text-center">
+                <hr class="my-3">
+                <p class="text-muted mb-0">
+                  Already have an account? 
+                  <a href="/login" class="text-success text-decoration-none fw-bold">Sign in here</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

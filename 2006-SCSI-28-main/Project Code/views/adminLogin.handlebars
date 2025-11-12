@@ -1,0 +1,40 @@
+<section class="py-4">
+  <div class="container-fluid px-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-5 col-md-7">
+        <div class="bb-hero-card bg-warning-subtle rounded-3 p-4 p-md-5">
+          <header class="text-center mb-4">
+            <h1 class="display-6 mb-3 text-warning">Admin Sign In</h1>
+            <p class="lead text-muted mb-0">Sign in with an admin account</p>
+          </header>
+
+          <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+              <form action="/admin/login" method="POST">
+                <div class="mb-3">
+                  <label for="email" class="form-label">
+                    <i class="bi bi-envelope me-2 text-warning"></i>Email Address
+                  </label>
+                  <input type="email" class="form-control form-control-lg" id="email" name="email" 
+                         placeholder="Enter admin email" required>
+                </div>
+                
+                <div class="mb-4">
+                  <label for="password" class="form-label">
+                    <i class="bi bi-lock me-2 text-warning"></i>Password
+                  </label>
+                  <input type="password" class="form-control form-control-lg" id="password" name="password" 
+                         placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" class="btn btn-warning btn-lg w-100 mb-3">
+                  <i class="bi bi-shield-lock me-2"></i>Sign In as Admin
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,120 @@
+<section class="py-4">
+  <div class="container-fluid px-4">
+    <div class="bb-hero-card bg-success-subtle rounded-3 p-4 p-md-5">
+      <div class="row align-items-center g-4 mb-5">
+        <div class="col-lg-8 mx-auto text-center">
+          <h1 class="display-6 mb-3 text-success">My Profile</h1>
+          <p class="lead mb-0">Manage your account information and settings</p>
+        </div>
+      </div>
+
+      <div class="card border-0 shadow-sm">
+        <div class="card-body p-5">
+          <div class="row g-5">
+            <div class="col-lg-8">
+              <div class="d-flex align-items-center mb-4">
+                <img src="{{user.profilePicture}}" alt="Profile Picture" 
+                     class="rounded-circle me-3" style="width: 2.5rem; height: 2.5rem; object-fit: cover;">
+                <div>
+                  <h4 class="mb-1">Profile Information</h4>
+                  <p class="text-muted mb-0">Update your personal details</p>
+                </div>
+              </div>
+              
+              <form action="/profile/update" method="POST" enctype="multipart/form-data">
+                <div class="row g-3">
+                  <div class="col-12">
+                    <label class="form-label fw-semibold">
+                      <i class="bi bi-person me-2 text-success"></i>Full Name
+                    </label>
+                    <input type="text" class="form-control" name="name" value="{{user.name}}" required>
+                  </div>
+                  
+                  <div class="col-12">
+                    <label class="form-label fw-semibold">
+                      <i class="bi bi-at me-2 text-success"></i>Username
+                    </label>
+                    <input type="text" class="form-control" name="username" value="{{user.username}}" minlength="3" required>
+                    <div class="form-text">Must be at least 3 characters</div>
+                  </div>
+                  
+                  <div class="col-12">
+                    <label class="form-label fw-semibold text-muted">
+                      <i class="bi bi-envelope me-2"></i>Email Address
+                    </label>
+                    <div class="form-control bg-light text-muted">{{user.email}}</div>
+                    <div class="form-text">Email cannot be changed</div>
+                  </div>
+                  
+                  <div class="col-12">
+                    <input type="file" id="profilePicture" name="profilePicture" 
+                           accept="image/*" class="d-none" onchange="previewImage(this)">
+                    
+                    <div class="d-flex flex-wrap gap-2">
+                      <button type="submit" class="btn btn-success px-4">
+                        <i class="bi bi-check-circle me-2"></i>Update Profile
+                      </button>
+                      <a class="btn btn-outline-success px-4" href="/changeCurrentPassword">
+                        <i class="bi bi-key me-2"></i>Change Password
+                      </a>
+                      <a class="btn btn-outline-danger px-4" href="/logout">
+                        <i class="bi bi-box-arrow-right me-2"></i>Logout
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="col-lg-4 d-flex flex-column align-items-center justify-content-center">
+              <div class="text-center">
+                <div class="mb-4">
+                  <img src="{{user.profilePicture}}" alt="Profile Picture" 
+                       class="rounded-circle border" style="width: 10rem; height: 10rem; object-fit: cover;">
+                </div>
+                
+                <div class="mb-3">
+                  <button type="button" class="btn btn-outline-success" onclick="document.getElementById('profilePicture').click()">
+                    <i class="bi bi-camera me-2"></i>Change Profile Picture
+                  </button>
+                </div>
+                
+                <p class="text-muted small mb-0">
+                  <i class="bi bi-info-circle me-1"></i>
+                  Recommended: Square image, max 2MB
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function previewImage(input) {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const largeImg = document.querySelector('img[style*="10rem"]');
+            
+            if (largeImg) {
+                largeImg.src = e.target.result;
+                
+                largeImg.style.border = '3px solid #28a745';
+                
+                let pendingMsg = document.getElementById('pending-message');
+                if (!pendingMsg) {
+                    pendingMsg = document.createElement('div');
+                    pendingMsg.id = 'pending-message';
+                    pendingMsg.className = 'alert alert-info mt-2';
+                    pendingMsg.innerHTML = '<i class="bi bi-info-circle me-2"></i>Image updated! Click "Update Profile" to save changes.';
+                    largeImg.parentNode.appendChild(pendingMsg);
+                }
+            }
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>

@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-lg navbar-light py-3" style="background-color: #c1ddc8;">
+    <div class="container-fluid px-4">
+        {{#if user.isAdmin}}
+            <span class="navbar-brand fw-bold text-success" style="font-size: 1.5rem; cursor: default;">
+                <i class="bi bi-recycle me-2" style="font-size: 1.8rem;"></i>
+                BinBuddy
+            </span>
+        {{else}}
+            <a class="navbar-brand fw-bold text-success" href="/" style="font-size: 1.5rem;">
+                <i class="bi bi-recycle me-2" style="font-size: 1.8rem;"></i>
+                BinBuddy
+            </a>
+        {{/if}}
+        
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div id="navMenu" class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                {{#if user}}
+                    {{#unless user.isAdmin}}
+                        <li class="nav-item mx-1">
+                            <a class="nav-link px-3 py-2 rounded {{#if nav.home}}fw-bold text-success{{/if}}" href="/" style="transition: all 0.2s ease;">
+                                <i class="bi bi-house me-1"></i>Home
+                            </a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link px-3 py-2 rounded {{#if nav.map}}fw-bold text-success{{/if}}" href="/map" style="transition: all 0.2s ease;">
+                                <i class="bi bi-geo-alt me-1"></i>Find Bins
+                            </a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link px-3 py-2 rounded {{#if nav.articles}}fw-bold text-success{{/if}}" href="/articles" style="transition: all 0.2s ease;">
+                                <i class="bi bi-book me-1"></i>Learn
+                            </a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link px-3 py-2 rounded {{#if nav.reminder}}fw-bold text-success{{/if}}" href="/reminder/reminderDashboard" style="transition: all 0.2s ease;">
+                                <i class="bi bi-bell me-1"></i>Reminders
+                            </a>
+                        </li>
+                        <li class="nav-item mx-1">
+                            <a class="nav-link px-3 py-2 rounded {{#if nav.query}}fw-bold text-success{{/if}}" href="/query/Dashboard" style="transition: all 0.2s ease;">
+                                <i class="bi bi-chat-dots me-1"></i>Queries
+                            </a>
+                        </li>
+                    {{/unless}}
+                {{else}}
+                    <li class="nav-item mx-1">
+                        <a class="nav-link px-3 py-2 rounded {{#if nav.home}}fw-bold text-success{{/if}}" href="/" style="transition: all 0.2s ease;">
+                            <i class="bi bi-house me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link px-3 py-2 rounded {{#if nav.map}}fw-bold text-success{{/if}}" href="/map" style="transition: all 0.2s ease;">
+                            <i class="bi bi-geo-alt me-1"></i>Find Bins
+                        </a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link px-3 py-2 rounded {{#if nav.articles}}fw-bold text-success{{/if}}" href="/articles" style="transition: all 0.2s ease;">
+                            <i class="bi bi-book me-1"></i>Learn
+                        </a>
+                    </li>
+                {{/if}}
+                {{#if user}}
+                    {{#if user.isAdmin}}
+                        <li class="nav-item mx-1">
+                            <a class="nav-link px-3 py-2 rounded {{#if nav.admin}}fw-bold text-success{{/if}}" href="/admin/dashboard" style="transition: all 0.2s ease;">
+                                <i class="bi bi-gear me-1"></i>Admin
+                            </a>
+                        </li>
+                    {{/if}}
+                    <li class="nav-item mx-1">
+                        <a class="nav-link px-2 py-2 rounded d-flex align-items-center {{#if nav.profile}}fw-bold text-success{{/if}}" href="/profile" style="transition: all 0.2s ease;">
+                            <img src="{{user.profilePicture}}" alt="Profile" 
+                                 class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover;">
+                        </a>
+                    </li>
+                {{else}}
+                    <li class="nav-item mx-1 d-flex align-items-center">
+                        <a class="btn btn-success btn-sm px-3" href="/login" style="transition: all 0.2s ease;">
+                            <i class="bi bi-person-plus me-1"></i>Sign In
+                        </a>
+                    </li>
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+</nav>
