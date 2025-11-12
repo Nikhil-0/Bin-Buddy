@@ -76,11 +76,11 @@ npm install
 
 3️⃣ Configure Environment Variables
 Create a .env file in the project root and copy the following keys:
-    SENDGRID_API_KEY="Your_API_KEY_HERE"
-    EMAIL_USER="YOUR_EMAIL_HERE"
-    ADMIN_CODE="BINBUDDY2025"
-    GOOGLE_MAPS_API_KEY="Your_API_KEY_HERE"
-    MONGO_URI="YOUR_DB_HERE"
+    - SENDGRID_API_KEY="Your_API_KEY_HERE"
+    - EMAIL_USER="YOUR_EMAIL_HERE"
+    - ADMIN_CODE="BINBUDDY2025"
+    - GOOGLE_MAPS_API_KEY="Your_API_KEY_HERE"
+    - MONGO_URI="YOUR_DB_HERE"
 
 # Map API (Google Maps)
 - GOOGLE_MAPS_API_KEY=your_api_key_here
