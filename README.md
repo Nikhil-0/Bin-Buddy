@@ -3,16 +3,14 @@
 # Bin Buddy - An E-waste Recycling App
 
 
-| Lab Group  | SCSI                                  |
 |------------|---------------------------------------|
-| Team       | Group 3                               |
 | Title      | Bin Buddy                             |
-| Members    | HTOO MYAT NOE (U2422977K)             |
-|            | ARMAN KHAN (U2421760A)                |
-|            | CHUA YUE JUN (U2423015D)              |
-|            | NIKHIL MADETI (U2421243D)             |
-|            | SOH CEK CONG (U2423500C)              |
-|            | YOONG HONG JUN, NICHOLAS (U2321582L)  |
+| Members    | HTOO MYAT NOE                         |
+|            | ARMAN KHAN                            |
+|            | CHUA YUE JUN                          |
+|            | NIKHIL MADETI                         |
+|            | SOH CEK CONG                          |
+|            | YOONG HONG JUN, NICHOLAS              |
 
 
 # Demo Video
